@@ -62,7 +62,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
     <div className="flex w-full flex-col gap-1">
       <div className="flex flex-col gap-3">
         {label && (
-          <label htmlFor={id} className="pl-0.5 text-sm">
+          <label htmlFor={id} className="pl-0.5 text-xs">
             {label}
           </label>
         )}
@@ -72,7 +72,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
           type={type === 'password' ? (showPassword ? 'text' : 'password') : 'text'}
           id={id}
           className={cn(
-            'peer block w-full rounded-full bg-transparent px-5 py-3 text-sm text-black ring-1 ring-border hover:ring-gray-500',
+            'peer block w-full rounded-full bg-transparent px-5 py-3 text-xs text-black ring-1 ring-border hover:ring-gray-500',
             {
               'outline-none ring-2 ring-black': isFocus,
               'cursor-not-allowed hover:!ring-gray-300': disabled,

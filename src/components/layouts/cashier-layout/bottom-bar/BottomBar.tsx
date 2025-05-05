@@ -13,7 +13,7 @@ const BottomBar = () => {
     <section
       role="navigation"
       aria-label="navigation"
-      className="fixed inset-x-0 bottom-0 h-[60px] w-full bg-white md:hidden"
+      className="fixed inset-x-0 bottom-0 h-[56px] w-full bg-white md:hidden"
     >
       <ul className="relative flex size-full flex-row items-center shadow-md">
         {MENUS.map((menu) => (
