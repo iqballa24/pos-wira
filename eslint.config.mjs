@@ -26,7 +26,6 @@ const eslintConfig = [
       'plugin:@typescript-eslint/recommended',
     ],
     rules: {
-      'no-unused-vars': ['error'],
       'no-console': ['error'],
       'jsx-quotes': ['error', 'prefer-double'],
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -34,7 +33,7 @@ const eslintConfig = [
       'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
 
       //#region  //*=========== Unused Import ===========
-      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
       'unused-imports/no-unused-imports': 'warn',
       'unused-imports/no-unused-vars': [
         'warn',
