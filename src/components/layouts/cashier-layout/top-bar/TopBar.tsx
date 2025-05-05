@@ -1,11 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/utils/cn';
 import { MENUS } from '@/utils/constant';
 import { WiraSvg } from '@/utils/svg';
+
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/elements';
 
 const TopBar = () => {
   const pathname = usePathname();
@@ -37,14 +40,35 @@ const TopBar = () => {
         </ul>
 
         {/* profile section */}
-        <div className="flex flex-row items-center justify-center gap-3">
-          <div className="size-9 rounded-full bg-border md:size-[50px]" />
+        <Popover>
+          <PopoverTrigger>
+            <div className="flex flex-row items-center justify-center gap-3">
+              <div className="relative size-9 rounded-full bg-border md:size-[50px]">
+                <Image
+                  width={50}
+                  height={50}
+                  src="https://avatar.iran.liara.run/public/38"
+                  className="rounded-full"
+                  alt=""
+                />
 
-          <div className="hidden flex-col gap-0.5 md:flex">
-            <p className="text-xs font-bold md:text-sm">Iqbal Nugraha</p>
-            <p className="text-[9px] font-light md:text-xs">Cashier 1</p>
-          </div>
-        </div>
+                <div className="absolute right-0 top-0.5 size-2 rounded-full bg-green-500 md:size-3" />
+              </div>
+
+              <div className="hidden flex-col gap-0.5 text-left md:flex">
+                <p className="text-xs font-bold md:text-sm">Iqbal Nugraha</p>
+                <p className="text-[9px] font-light md:text-xs">Cashier 1</p>
+              </div>
+            </div>
+          </PopoverTrigger>
+
+          <PopoverContent className="mr-2 w-44 md:mr-0">
+            <div className="flex flex-col gap-2 text-sm">
+              <p>Profile</p>
+              <p>Log out</p>
+            </div>
+          </PopoverContent>
+        </Popover>
       </nav>
     </header>
   );
