@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 import { MENUS } from '@/utils/constant';
 import { WiraSvg } from '@/utils/svg';
 
@@ -14,7 +14,7 @@ const TopBar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="flex h-[56px] w-full items-center justify-center bg-white px-5 md:h-[70px]">
+    <header className="fixed top-0 z-10 flex h-[56px] w-full items-center justify-center bg-white px-5 md:h-[70px]">
       <nav className="mx-auto flex w-full max-w-screen-xl items-center justify-between">
         {/* icon logo section */}
         <WiraSvg />
@@ -29,7 +29,7 @@ const TopBar = () => {
                   'flex flex-row items-center gap-2 p-4 text-xs text-gray hover:cursor-pointer hover:text-primary',
                   pathname === menu.path
                     ? 'border-b border-primary text-primary'
-                    : 'relative !no-underline after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100',
+                    : 'relative !no-underline after:absolute after:-bottom-[1px] after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100',
                 )}
               >
                 <menu.icon size="16" />
@@ -63,7 +63,7 @@ const TopBar = () => {
             </div>
           </PopoverTrigger>
 
-          <PopoverContent className="mr-2 w-44 md:mr-0">
+          <PopoverContent className="mr-2 w-44 p-1 md:mr-0" align="start">
             <div className="flex flex-col text-xs">
               <p className="cursor-pointer rounded p-2 hover:bg-border">Profile</p>
               <p className="cursor-pointer rounded p-2 hover:bg-border">Log out</p>

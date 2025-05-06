@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import buttonVariants from '@/components/elements/button/variant';
 

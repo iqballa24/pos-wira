@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 import { MENUS } from '@/utils/constant';
 
 const BottomBar = () => {

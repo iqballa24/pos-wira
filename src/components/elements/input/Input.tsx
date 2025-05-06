@@ -4,11 +4,11 @@ import { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useState } fr
 import { Eye, EyeOff } from 'lucide-react';
 
 import { useDisclosure } from '@/hooks';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  label: string;
+  label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -59,8 +59,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
   const PasswordIcon = showPassword ? EyeOff : Eye;
 
   return (
-    <div className="flex w-full flex-col gap-1">
-      <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-1">
+      <div className="relative flex flex-col gap-3">
         {label && (
           <label htmlFor={id} className="pl-0.5 text-xs">
             {label}
@@ -97,7 +97,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
 
         {rightIcon && type !== 'password' && (
           <div className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer rounded p-1">
-            {leftIcon}
+            {rightIcon}
           </div>
         )}
 
@@ -107,7 +107,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
             className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer rounded p-1"
             onClick={togglePassword}
           >
-            <PasswordIcon size={18} className="text-gray-500" />
+            <PasswordIcon size={18} className="text-gray" />
           </button>
         )}
       </div>

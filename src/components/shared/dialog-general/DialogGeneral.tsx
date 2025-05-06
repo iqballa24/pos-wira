@@ -1,6 +1,8 @@
+'use client';
+
 import { ReactNode } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import {
   Dialog,
