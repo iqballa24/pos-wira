@@ -10,7 +10,7 @@ const CashierLayout = ({
     <>
       <TopBar />
 
-      <main className="pt-[70px]">{children}</main>
+      <main className="pt-[56px] md:pt-[70px]">{children}</main>
 
       <BottomBar />
     </>
