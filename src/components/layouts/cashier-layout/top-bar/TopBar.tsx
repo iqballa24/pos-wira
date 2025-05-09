@@ -14,7 +14,7 @@ const TopBar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 z-10 flex h-[56px] w-full items-center justify-center bg-white px-5 md:h-[70px]">
+    <header className="fixed top-0 z-50 flex h-[56px] w-full items-center justify-center border-b-2 border-background bg-white px-5 md:h-[70px]">
       <nav className="mx-auto flex w-full max-w-screen-xl items-center justify-between">
         {/* icon logo section */}
         <WiraSvg />

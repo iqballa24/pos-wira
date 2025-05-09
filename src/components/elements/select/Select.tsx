@@ -12,24 +12,38 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
+interface ISelectTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
+  label?: string;
+}
+
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => {
+  ISelectTriggerProps
+>(({ id, className, children, label, ...props }, ref) => {
   return (
-    <SelectPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        'flex w-full items-center justify-between whitespace-nowrap rounded-full border border-border bg-transparent px-5 py-3 text-xs shadow-sm ring-border ring-offset-background hover:ring-1 hover:ring-black focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-black [&>span]:line-clamp-1',
-        className,
+    <div className="relative flex flex-col gap-3">
+      {label && (
+        <label htmlFor={id} className="pl-0.5 text-xs">
+          {label}
+        </label>
       )}
-      {...props}
-    >
-      {children}
-      <SelectPrimitive.Icon asChild>
-        <ChevronDown className="size-4 opacity-50" />
-      </SelectPrimitive.Icon>
-    </SelectPrimitive.Trigger>
+
+      <SelectPrimitive.Trigger
+        ref={ref}
+        id={id}
+        className={cn(
+          'flex w-full items-center justify-between whitespace-nowrap rounded-full border border-border bg-transparent px-5 py-3 text-xs ring-border ring-offset-background hover:ring-1 hover:ring-primary focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-gray [&>span]:line-clamp-1',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+        <SelectPrimitive.Icon asChild>
+          <ChevronDown className="size-4 opacity-50" />
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+    </div>
   );
 });
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;

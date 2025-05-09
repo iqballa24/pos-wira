@@ -6,14 +6,15 @@ import { cn } from '@/utils';
 
 interface IContainerProps {
   children: React.ReactNode;
+  classNameWrapper?: string;
   className?: string;
 }
 
 const Container = (props: IContainerProps) => {
-  const { children, className } = props;
+  const { children, classNameWrapper, className } = props;
 
   return (
-    <section className="mt-2 w-full bg-white px-5">
+    <section className={cn('mt-2 w-full bg-white px-5', classNameWrapper)}>
       <div className={cn('mx-auto w-full max-w-screen-xl', className)}>{children}</div>
     </section>
   );

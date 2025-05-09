@@ -1,17 +1,20 @@
 'use client';
 
-import { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useState } from 'react';
+import { ChangeEvent, FocusEvent, forwardRef, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
 import { useDisclosure } from '@/hooks';
-import { cn } from '@/utils';
+import { cn, formatToRupiah, parseRupiahToNumber } from '@/utils';
 
-interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+type TDefaultInputMode = React.HTMLAttributes<HTMLInputElement>['inputMode'];
+
+interface IInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'inputMode'> {
   className?: string;
   label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  inputMode?: TDefaultInputMode | 'rupiah';
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
@@ -49,9 +52,15 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
     const value = event?.target?.value;
 
     if (inputMode === 'numeric' && /\D/g?.test(value)) return;
+
     if (id === 'phone' && value[0] === '0') return setInputValue(value.substring(1));
 
-    setInputValue(event.target.value);
+    if (inputMode === 'rupiah') {
+      const valueRupiah = parseRupiahToNumber(value);
+      setInputValue(formatToRupiah(valueRupiah));
+    } else {
+      setInputValue(value);
+    }
 
     if (onChange) onChange(event);
   };
@@ -72,9 +81,9 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(({ ...props }, ref) => {
           type={type === 'password' ? (showPassword ? 'text' : 'password') : 'text'}
           id={id}
           className={cn(
-            'peer block w-full rounded-full bg-transparent px-5 py-3 text-xs text-black ring-1 ring-border hover:ring-gray-500',
+            'peer block w-full rounded-full bg-transparent px-5 py-3 text-xs text-black ring-1 ring-border hover:ring-primary',
             {
-              'outline-none ring-2 ring-black': isFocus,
+              'outline-none ring-2 ring-primary': isFocus,
               'cursor-not-allowed hover:!ring-gray-300': disabled,
               'ring-red-500 hover:ring-red-500': error,
               'pl-12': leftIcon,
